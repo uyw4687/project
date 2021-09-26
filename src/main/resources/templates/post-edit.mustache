@@ -1,0 +1,25 @@
+{{>layout/header}}
+
+<div class="container-fluid">
+
+<h2>게시물 수정</h2>
+
+<form>
+    <label for="author">번호</label><br />
+    <input id="id" type="text" class="form-control" value={{post.id}} readonly/><br />
+
+    <label for="author">작성자</label><br />
+    <input id="author" type="text" class="form-control" value={{post.author}} readonly/><br />
+
+    <label for="title">제목</label><br />
+    <input id="title" type="text" class="form-control" value={{post.title}}/><br />
+
+    <label for="content">내용</label><br />
+    <textarea id="content" class="form-control">{{post.content}}</textarea><br />
+
+    <button class="btn btn-primary" id="edit" type="button">수정</button>
+</form>
+
+</div>
+
+{{>layout/footer}}

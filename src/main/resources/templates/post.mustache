@@ -1,0 +1,28 @@
+{{>layout/header}}
+
+<div class="container-fluid">
+
+<table class="table table-bordered">
+    <tr>
+        <td>번호</td>
+        <td id="id">{{post.id}}</td>
+    </tr>
+    <tr>
+        <td>작성자</td>
+        <td id="author">{{post.author}}</td>
+    </tr>
+    <tr>
+        <td>제목</td>
+        <td id="title">{{post.title}}</td>
+    </tr>
+    <tr>
+        <td>내용</td>
+        <td id="content">{{post.content}}</td>
+    </tr>
+</table>
+<a href="/posts/edit/{{post.id}}" role="button" class="btn btn-info">수정</a>
+<button id="del" type="button" class="btn btn-danger">삭제</button>
+
+</div>
+
+{{>layout/footer}}

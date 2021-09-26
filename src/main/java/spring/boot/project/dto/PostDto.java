@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import spring.boot.project.domain.posts.Posts;
 
+import java.time.LocalDateTime;
+
 @Getter
 public class PostDto {
 
@@ -11,6 +13,7 @@ public class PostDto {
     private String author;
     private String title;
     private String content;
+    private LocalDateTime lastModified;
 
     @Builder
     public PostDto(String author, String title, String content) {
@@ -24,6 +27,7 @@ public class PostDto {
         author = post.getAuthor();
         title = post.getTitle();
         content = post.getContent();
+        lastModified = post.getLastModified();
     }
 
     public Posts toEntity() {

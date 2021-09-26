@@ -1,0 +1,22 @@
+{{>layout/header}}
+
+<div class="container-fluid">
+
+<h2>게시물 등록</h2>
+
+<form>
+    <label for="author">작성자</label><br />
+    <input id="author" type="text" class="form-control" /><br />
+
+    <label for="title">제목</label><br />
+    <input id="title" type="text" class="form-control" /><br />
+
+    <label for="content">내용</label><br />
+    <textarea id="content" class="form-control"></textarea><br />
+
+    <a href="/" class="btn btn-light" role="button">취소</a>
+    <button class="btn btn-primary" id="new" type="button">등록</button>
+</form>
+
+</div>
+{{>layout/footer}}

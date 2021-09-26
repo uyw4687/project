@@ -11,19 +11,24 @@ public class PostCtrler {
     @Autowired
     PostService postSvc;
 
-    @PostMapping("/posts")
+    @PostMapping("/api/posts")
     public Long create(@RequestBody PostDto post) {
         return postSvc.create(post);
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping("/api/posts/{id}")
     public PostDto show(@PathVariable("id") Long id) {
         return postSvc.see(id);
     }
 
-    @PutMapping("/posts/{id}")
+    @PutMapping("/api/posts/{id}")
     public Long modify(@RequestBody PostDto post, @PathVariable("id") Long id) {
         return postSvc.modify(post, id);
+    }
+
+    @DeleteMapping("/api/posts/{id}")
+    public Long remove(@PathVariable("id") Long id) {
+        return postSvc.remove(id);
     }
 
 }

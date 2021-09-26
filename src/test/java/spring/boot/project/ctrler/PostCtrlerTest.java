@@ -37,7 +37,7 @@ public class PostCtrlerTest {
     }
 
     @Test
-    public void create() throws Exception {
+    public void create() {
         String author = "author 123";
         String title = "title 456";
         String content = "content 789";
@@ -48,7 +48,7 @@ public class PostCtrlerTest {
                 .content(content).build();
 
         ResponseEntity<Long> resp
-                = restTmpl.postForEntity("http://localhost:"+port+"/posts", postDto, Long.class);
+                = restTmpl.postForEntity("http://localhost:"+port+"/api/posts", postDto, Long.class);
 
         assertThat(resp.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(resp.getBody()).isGreaterThan(0L);
@@ -60,7 +60,7 @@ public class PostCtrlerTest {
     }
 
     @Test
-    public void get() throws Exception {
+    public void get() {
         String author = "author !@#";
         String title = "title $%^";
         String content = "content &*()";
@@ -68,7 +68,7 @@ public class PostCtrlerTest {
         Long id = repo.save(new Posts(author, title, content)).getId();
 
         ResponseEntity<PostDto> resp
-                = restTmpl.getForEntity("http://localhost:"+port+"/posts/"+id, PostDto.class);
+                = restTmpl.getForEntity("http://localhost:"+port+"/api/posts/"+id, PostDto.class);
 
         assertThat(resp.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(resp.getBody().getId()).isEqualTo(id);
@@ -78,7 +78,7 @@ public class PostCtrlerTest {
     }
 
     @Test
-    public void modify() throws Exception {
+    public void modify() {
         String author = "author !!!";
         String title = "title @@@";
         String content = "content ###";
@@ -96,7 +96,7 @@ public class PostCtrlerTest {
         HttpEntity<PostDto> reqEntity = new HttpEntity<>(postDto);
 
         ResponseEntity<Long> resp
-                = restTmpl.exchange("http://localhost:"+port+"/posts/"+id,
+                = restTmpl.exchange("http://localhost:"+port+"/api/posts/"+id,
                 HttpMethod.PUT, reqEntity, Long.class);
 
         assertThat(resp.getStatusCode()).isEqualTo(HttpStatus.OK);
