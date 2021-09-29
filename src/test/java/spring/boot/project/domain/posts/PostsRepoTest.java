@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -42,7 +44,7 @@ public class PostsRepoTest {
 
     @Test
     public void setAuditedDates() {
-        LocalDateTime bef = LocalDateTime.now();
+        LocalDateTime bef = LocalDateTime.of(LocalDate.now(), LocalTime.of(0,0));
 
         String author = "author!";
         String title = "title@";

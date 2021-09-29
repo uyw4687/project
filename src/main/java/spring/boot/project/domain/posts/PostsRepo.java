@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface PostsRepo extends JpaRepository<Posts, Long> {
+public interface PostsRepo extends JpaRepository<Posts,Long> {
 
     @Query( "SELECT p FROM Posts p")
     List<Posts> selectAll(Sort sort);

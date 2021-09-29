@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ItemDtoTest {
+public class ItemTest {
 
     @Test
     public void set_and_get() {

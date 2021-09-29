@@ -22,6 +22,7 @@ public class PostDto {
         this.content = content;
     }
 
+    // reverse
     public PostDto(Posts post) {
         id = post.getId();
         author = post.getAuthor();

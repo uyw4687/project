@@ -3,10 +3,9 @@ package spring.boot.project.ctrler;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +21,7 @@ public class RouteCtrlerTest {
     @Test
     public void 초기화면() {
         String resp = restTmpl.getForObject("/", String.class);
-        assertThat(resp).contains("게시글 작성 서비스");
+        assertThat(resp).contains("게시물 작성 서비스");
     }
 
 }

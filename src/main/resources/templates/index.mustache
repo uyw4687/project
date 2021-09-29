@@ -3,8 +3,15 @@
 <div class="container-fluid">
 
 <h2>게시물 작성 서비스</h2>
-<a href="post-new" class="btn btn-primary" role="button">작성</a>
-<br />
+{{#name}}
+    {{name}}님 안녕하세요<br />
+    <a href="post-new" class="btn btn-primary" role="button">작성</a>
+    <a href="/logout" class="btn btn-light" role="button">로그아웃</a>
+{{/name}}
+{{^name}}
+    <a href="/oauth2/authorization/google" class="btn btn-info" role="button">구글 로그인</a><br />
+    <a href="/oauth2/authorization/naver" class="btn btn-success" role="button">네이버 로그인</a><br />
+{{/name}}
 <table class="table table-bordered">
     <thead><tr>
         <th>번호</th>

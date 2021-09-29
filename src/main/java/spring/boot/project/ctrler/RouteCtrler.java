@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import spring.boot.project.config.auth.SessUser;
 import spring.boot.project.dto.PostDto;
+import spring.boot.project.dto.UserInfoDto;
 import spring.boot.project.service.PostService;
 
 import java.util.List;
@@ -17,7 +19,11 @@ public class RouteCtrler {
     private final PostService svc;
 
     @GetMapping("/")
-    public String main(Model model) {
+    public String main(Model model, @SessUser UserInfoDto user) {
+        if (user!=null) {
+            model.addAttribute("name", user.getName());
+        }
+
         List<PostDto> posts = svc.getAll();
         model.addAttribute("posts", posts);
         return "index";
