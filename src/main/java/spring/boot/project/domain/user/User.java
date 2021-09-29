@@ -20,9 +20,9 @@ public class User extends BaseTime {
     @Column(nullable = false)
     private Role role;
 
-    @Column
+    @Column(nullable = false)
     private String email;
-    @Column
+    @Column(nullable = false)
     private String name;
     @Column
     private String profileImage;
