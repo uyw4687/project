@@ -18,11 +18,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .headers().frameOptions().disable().and()
-                .authorizeRequests().antMatchers("/", "/js/**", "/h2-console/**").permitAll()
+                .authorizeRequests().antMatchers("/", "/js/**", "/h2-console/**", "/profile").permitAll()
                                     .antMatchers("/api/**").hasRole(Role.USER.name())
                                     .anyRequest().authenticated().and()
                 .logout().logoutSuccessUrl("/").and()
                 .oauth2Login().userInfoEndpoint().userService(oauth2Svc);
-
     }
+
 }

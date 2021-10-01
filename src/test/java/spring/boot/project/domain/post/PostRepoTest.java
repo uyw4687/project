@@ -1,4 +1,4 @@
-package spring.boot.project.domain.posts;
+package spring.boot.project.domain.post;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -15,10 +15,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class PostsRepoTest {
+public class PostRepoTest {
 
     @Autowired
-    PostsRepo repo;
+    PostRepo repo;
 
     @AfterEach
     public void clean() {
@@ -31,12 +31,12 @@ public class PostsRepoTest {
         String content = "content 1234";
         String author = "abcd@xyz.com";
 
-        repo.save(Posts.builder()
+        repo.save(Post.builder()
                 .author(author)
                 .title(title)
                 .content(content).build());
 
-        Posts post = repo.findAll().get(0);
+        Post post = repo.findAll().get(0);
         assertThat(post.getAuthor()).isEqualTo(author);
         assertThat(post.getTitle()).isEqualTo(title);
         assertThat(post.getContent()).isEqualTo(content);
@@ -49,12 +49,12 @@ public class PostsRepoTest {
         String author = "author!";
         String title = "title@";
         String content = "content#";
-        repo.save(Posts.builder()
+        repo.save(Post.builder()
                 .author(author)
                 .title(title)
                 .content(content).build());
 
-        Posts post = repo.findAll().get(0);
+        Post post = repo.findAll().get(0);
 
         assertThat(post.getCreated()).isAfter(bef);
         assertThat(post.getLastModified()).isAfter(bef);

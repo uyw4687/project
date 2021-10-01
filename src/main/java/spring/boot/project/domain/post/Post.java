@@ -1,4 +1,4 @@
-package spring.boot.project.domain.posts;
+package spring.boot.project.domain.post;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Posts extends BaseTime {
+public class Post extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Posts extends BaseTime {
     private String content;
 
     @Builder
-    public Posts(String author,String title, String content) {
+    public Post(String author, String title, String content) {
         this.author = author;
         this.title = title;
         this.content = content;

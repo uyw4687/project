@@ -1,0 +1,51 @@
+language: java
+jdk:
+  - openjdk8
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - "$HOME/.m2/repository"
+    - "$HOME/.gradle"
+before_install:
+  - chmod +x gradlew
+script: "./gradlew clean build"
+before_deploy:
+  - if [ -z "$ALREADY_RUN" ]; then
+      ALREADY_RUN=1;
+      mkdir -p deploy_files;
+
+      mv build/libs/*.jar deploy_files;
+      chmod +x scripts/*;
+      mv scripts/* deploy_files;
+      mv appspec.yml deploy_files;
+
+      cd deploy_files;
+      zip -r project *;
+      cd ..;
+
+      mkdir -p deploy;
+      mv deploy_files/project.zip deploy;
+    fi
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: spring-boot-project
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait_until_deployed: true
+
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: spring-boot-project
+    key: project.zip
+    bundle_type: zip
+    application: spring-boot-project
+    deployment_group: spring-boot-project
+    region: ap-northeast-2
+    wait-until-deployed: true

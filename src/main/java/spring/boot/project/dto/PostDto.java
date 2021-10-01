@@ -2,7 +2,7 @@ package spring.boot.project.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import spring.boot.project.domain.posts.Posts;
+import spring.boot.project.domain.post.Post;
 
 import java.time.LocalDateTime;
 
@@ -23,7 +23,7 @@ public class PostDto {
     }
 
     // reverse
-    public PostDto(Posts post) {
+    public PostDto(Post post) {
         id = post.getId();
         author = post.getAuthor();
         title = post.getTitle();
@@ -31,8 +31,8 @@ public class PostDto {
         lastModified = post.getLastModified();
     }
 
-    public Posts toEntity() {
-        return Posts.builder()
+    public Post toEntity() {
+        return Post.builder()
                 .author(author)
                 .title(title)
                 .content(content).build();

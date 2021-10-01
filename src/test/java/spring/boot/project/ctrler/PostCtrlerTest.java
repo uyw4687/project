@@ -16,8 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import spring.boot.project.domain.posts.Posts;
-import spring.boot.project.domain.posts.PostsRepo;
+import spring.boot.project.domain.post.Post;
+import spring.boot.project.domain.post.PostRepo;
 import spring.boot.project.dto.PostDto;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class PostCtrlerTest {
 
     @Autowired
-    private PostsRepo repo;
+    private PostRepo repo;
 
     @AfterEach
     public void clean() {
@@ -69,7 +69,7 @@ public class PostCtrlerTest {
         String respCont = res.getResponse().getContentAsString();
         assertThat(Long.valueOf(respCont)).isGreaterThan(0L);
 
-        Posts post = repo.findAll().get(0);
+        Post post = repo.findAll().get(0);
         assertThat(post.getAuthor()).isEqualTo(author);
         assertThat(post.getTitle()).isEqualTo(title);
         assertThat(post.getContent()).isEqualTo(content);
@@ -82,7 +82,7 @@ public class PostCtrlerTest {
         String title = "title $%^";
         String content = "content &*()";
 
-        Long id = repo.save(new Posts(author, title, content)).getId();
+        Long id = repo.save(new Post(author, title, content)).getId();
 
         mvc.perform(get("/api/posts/"+id))
                 .andExpect(status().isOk())
@@ -100,7 +100,7 @@ public class PostCtrlerTest {
         String title = "title @@@";
         String content = "content ###";
 
-        Long id = repo.save(new Posts(author, title, content)).getId();
+        Long id = repo.save(new Post(author, title, content)).getId();
 
         String newTitle = "new title @@@";
         String newContent = "new content ###";
@@ -116,7 +116,7 @@ public class PostCtrlerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(String.valueOf(id)));
 
-        Posts post = repo.findAll().get(0);
+        Post post = repo.findAll().get(0);
         assertThat(post.getAuthor()).isEqualTo(author);
         assertThat(post.getTitle()).isEqualTo(newTitle);
         assertThat(post.getContent()).isEqualTo(newContent);

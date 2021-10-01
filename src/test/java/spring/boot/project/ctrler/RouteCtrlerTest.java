@@ -21,7 +21,7 @@ public class RouteCtrlerTest {
     @Test
     public void 초기화면() {
         String resp = restTmpl.getForObject("/", String.class);
-        assertThat(resp).contains("게시물 작성 서비스");
+        assertThat(resp).contains("게시판");
     }
 
 }
